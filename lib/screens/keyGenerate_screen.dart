@@ -19,6 +19,7 @@ class _GenerateKeyState extends State<GenerateKey> {
 
   TextEditingController pasteController = TextEditingController();
   String ApiKey = '';
+  String Api_key2 = "";
 
   @override void initState() {
     getData();
@@ -97,7 +98,7 @@ class _GenerateKeyState extends State<GenerateKey> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  //backgroundColor: Colors.white,
                   padding: EdgeInsets.all(20.0),
                   fixedSize: Size(160, 40),
                   textStyle: TextStyle(
@@ -189,7 +190,7 @@ class _GenerateKeyState extends State<GenerateKey> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  //backgroundColor: Colors.white,
                   padding: EdgeInsets.all(20.0),
                   fixedSize: Size(160, 40),
                   textStyle: TextStyle(
