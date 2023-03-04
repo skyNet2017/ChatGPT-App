@@ -90,10 +90,10 @@ class ApiService {
     try {
       var response = await http.get(
         Uri.parse("$Base_url/models"),
-        headers: {'Authorization': 'Bearer $Api_key'},
+        //headers: {'Authorization': 'Bearer $Api_key'},
       );
 
-      Map jsonResponse = jsonDecode(response.body);
+      Map jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
 
       if (jsonResponse['error'] != null) {
         // print("jsonResponse['error'] ${jsonResponse['error']["message"]}");
@@ -120,19 +120,19 @@ class ApiService {
       var response = await http.post(
         Uri.parse("$Base_url/completions"),
         headers: {
-          'Authorization': 'Bearer $Api_key',
+         // 'Authorization': 'Bearer $Api_key',
           "Content-Type": "application/json"
         },
         body: jsonEncode(
           {
             "model": modelId,
             "prompt": message,
-            "max_tokens": 300,
+            "max_tokens": 3000,
           },
         ),
       );
 
-      Map jsonResponse = jsonDecode(response.body);
+      Map jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
 
       if (jsonResponse['error'] != null) {
         // print("jsonResponse['error'] ${jsonResponse['error']["message"]}");
@@ -143,15 +143,19 @@ class ApiService {
         // log("jsonResponse[choices]text ${jsonResponse["choices"][0]["text"]}");
         chatList = List.generate(
           jsonResponse["choices"].length,
-              (index) => ChatModel(
-            msg: jsonResponse["choices"][index]["text"],
-            chatIndex: 1,
-          ),
+              (index){
+            debugPrint(jsonResponse["choices"][index]["content"]);
+            debugPrint(jsonResponse["choices"][index]["text"]);
+               return ChatModel(
+                  msg: jsonResponse["choices"][index]["text"],
+                  chatIndex: 1,
+                );
+              } ,
         );
       }
       return chatList;
-    } catch (error) {
-      //log("error $error");
+    } catch (error,s) {
+      debugPrint("$Base_url/completions \n error $error\n$s");
       rethrow;
     }
   }

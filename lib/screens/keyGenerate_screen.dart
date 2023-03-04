@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:chatgpt_app/screens/chat_screen.dart';
+import 'package:chatgpt_app/screens/chat_screen.dart' as chat;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
-import 'package:chatgpt_app/constants/api_consts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+
 
 class GenerateKey extends StatefulWidget {
 
@@ -45,7 +43,7 @@ class _GenerateKeyState extends State<GenerateKey> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black87),
       ),
-      drawer: NavigationDrawer(),
+      drawer: chat.NavigationDrawer(),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
@@ -209,7 +207,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                           Duration(seconds: 3),
                               () => Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (BuildContext) => ChatScreen())
+                                  builder: (BuildContext) => chat.ChatScreen())
                           )
                       );
                     });
