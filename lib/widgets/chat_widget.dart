@@ -39,7 +39,10 @@ class ChatWidget extends StatelessWidget {
                       child: chatIndex == 0
                       ?TextWidget(
                           label: msg,
-                      ): DefaultTextStyle(
+                      ): TextWidget(
+                        label: msg,
+                      )
+                      /*DefaultTextStyle(
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.normal,
@@ -51,7 +54,7 @@ class ChatWidget extends StatelessWidget {
                             displayFullTextOnTap: false,
                             totalRepeatCount: 0,
                             stopPauseOnTap: true,
-                            animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
+                            animatedTexts: [TyperAnimatedText(msg.trim(),),],))*/,
                     ),
                     // chatIndex == 0 ? SizedBox.shrink()
                     //     :Column(
